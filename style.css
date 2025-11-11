@@ -322,5 +322,57 @@ body{
     linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.9)),
     url("assets/facebook-bg.jpg") center/cover no-repeat;
 }
+/* --- Mobilmeny --- */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--primary-strong);
+}
+
+/* Vanlig visning på PC */
+.nav {
+  display: flex;
+  gap: 10px;
+}
+
+/* Mobiltilpasning */
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    right: 0;
+    width: 70%;
+    background: #ffffffee;
+    backdrop-filter: blur(6px);
+    border-left: 1px solid #e0ecef;
+    border-bottom: 1px solid #e0ecef;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    padding: 12px 0;
+  }
+
+  .nav a {
+    padding: 12px 20px;
+    display: block;
+    color: var(--text);
+  }
+
+  .nav a:hover {
+    background: #f2f8fa;
+  }
+
+  .nav.show {
+    display: flex;
+  }
+}
+
 
 
