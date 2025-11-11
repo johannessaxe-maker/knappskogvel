@@ -235,6 +235,32 @@
     </div>
   </section>
 
+  <section id="fasiliteter" class="section">
+  <div class="container">
+    <h2>Fasiliteter i Grendahuset</h2>
+    <p class="muted">Se bilder av lokalet og uteområdet som kan leies:</p>
+
+    <div class="gallery">
+      <img src="assets/fasilitet1.jpg" alt="Kjøkken og serveringsområde"
+           data-caption="Fullt utstyrt kjøkken med oppvaskmaskin og dekketøy.">
+      <img src="assets/fasilitet2.jpg" alt="Storsal med scene"
+           data-caption="Stor sal med scene og plass til ca. 80 personer.">
+      <img src="assets/fasilitet3.jpg" alt="Uteområde"
+           data-caption="Uteområde med benker og kort vei til sjøen.">
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox (popup for bilder) -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-image" src="" alt="">
+  <div class="caption"></div>
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</div>
+
+
   <!-- Visjon / prosjekter -->
   <section id="visjon" class="section">
     <div class="container grid-2">
@@ -356,10 +382,47 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryImages = document.querySelectorAll(".gallery img");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.querySelector(".lightbox-image");
+  const caption = document.querySelector(".caption");
+  const closeBtn = document.querySelector(".close");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+
+  let currentIndex = 0;
+
+  function showImage(index) {
+    const img = galleryImages[index];
+    lightboxImg.src = img.src;
+    caption.textContent = img.dataset.caption || img.alt;
+  }
+
+  galleryImages.forEach((img, i) => {
+    img.addEventListener("click", () => {
+      currentIndex = i;
+      showImage(currentIndex);
+      lightbox.style.display = "block";
+    });
+  });
+
+  closeBtn.onclick = () => lightbox.style.display = "none";
+  prevBtn.onclick = () => { currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length; showImage(currentIndex); };
+  nextBtn.onclick = () => { currentIndex = (currentIndex + 1) % galleryImages.length; showImage(currentIndex); };
+  
+  // Lukk hvis man klikker utenfor bildet
+  lightbox.addEventListener("click", e => {
+    if (e.target === lightbox) lightbox.style.display = "none";
+  });
+});
+</script>
 
 
 </body>
 </html>
+
 
 
 
