@@ -437,6 +437,10 @@ body{
 .lightbox button.next { right: 30px; }
 .lightbox button:hover { background: rgba(255,255,255,0.4); }
 
+.gallery.hidden {
+  display: none !important;
+}
+
 
 
 
