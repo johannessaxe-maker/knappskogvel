@@ -1,0 +1,326 @@
+/* Basestil – blågrønn, maritim, moderne */
+:root{
+  --bg:#f6fbfd;
+  --text:#17323b;
+  --muted:#56727b;
+  --primary:#207a86;       /* blågrønn */
+  --primary-strong:#0f5c66;/* mørkere */
+  --accent:#8fd3e6;        /* lys sjøblå */
+  --card:#ffffff;
+  --shadow: 0 10px 30px rgba(0,0,0,.06);
+  --radius:16px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,var(--bg),#eef7fa 60%, #e7f3f7 100%);
+  line-height:1.6;
+}
+
+/* Layout helpers */
+.container{width:min(1100px,92%); margin:0 auto}
+.section{padding:40px 0}
+.section.alt { background: #e4f3f7; }
+.grid-2{display:grid; gap:32px; grid-template-columns: 1.1fr .9fr}
+@media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
+.muted{color:var(--muted)}
+.small{font-size:.925rem}
+
+/* Header */
+.site-header{
+  position:sticky; top:0; z-index:1000;
+  background:#ffffffc8; backdrop-filter:saturate(180%) blur(8px);
+  border-bottom:1px solid #e6eef2;
+}
+.header-row{display:flex; align-items:center; justify-content:space-between; padding:10px 0}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text)}
+.brand-logo{width:36px; height:36px; object-fit:contain}
+.brand-name{font-weight:700}
+.nav a{color:var(--text); text-decoration:none; margin-left:16px; padding:10px 8px; border-radius:10px}
+.nav a:hover{background:#e9f3f6}
+
+/* Hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+.hero-inner {
+  padding: 80px 0 120px;
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  margin: 0 0 .6rem;
+}
+.lead {
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  color: var(--muted);
+  max-width: 60ch;
+}
+.hero-cta {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Bakgrunnsbilde – litt mykere og mer lysbalansert */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(208,238,243,0.25), rgba(240,250,252,0.45)),
+    linear-gradient(120deg, rgba(32,122,134,0.15), rgba(143,211,230,0.20)),
+    url('assets/hero.jpg') center/cover no-repeat;
+  filter: blur(2px) brightness(1.03) contrast(1.03) saturate(1.05);
+}
+
+
+.hero h1 {
+  color: #0e3c45; /* lett mørkere for å stå mot det lysere laget */
+  font-weight: 700;
+}
+
+.hero .lead {
+  color: #15515a;
+  margin-top: 0.5rem;
+}
+
+.hero h1,
+.hero .lead {
+  background: rgba(255, 255, 255, 0.10);   /* svært lett transparent lysning */
+  backdrop-filter: blur(2px) saturate(1.05); /* minimal frost-effekt */
+  -webkit-backdrop-filter: blur(2px) saturate(1.05);
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+
+
+
+/* Buttons */
+.btn{display:inline-block; text-decoration:none; border-radius:999px; padding:12px 18px; font-weight:600}
+.btn.primary{background:var(--primary); color:#fff; box-shadow:var(--shadow)}
+.btn.primary:hover{background:var(--primary-strong)}
+.btn.ghost{border:2px solid var(--primary); color:var(--primary)}
+.btn.ghost:hover{background:#e9f6f8}
+.btn.link{color:var(--primary); text-decoration:underline}
+
+/* Cards / images */
+.cards{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:20px}
+@media (max-width:1000px){ .cards{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:620px){ .cards{grid-template-columns:1fr} }
+.card{
+  background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+  overflow:hidden; padding-bottom:12px
+}
+.card img{width:100%; height:170px; object-fit:cover}
+.card h3{margin:12px 12px 4px}
+.card p{margin:0 12px}
+
+/* Photo cards */
+.photo-card{
+  background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden
+}
+.photo-card img{width:100%; height:auto; display:block}
+.photo-card figcaption{padding:10px 12px; color:var(--muted); font-size:.95rem}
+
+/* Lists */
+.checklist{padding-left:0; list-style:none; margin:14px 0}
+.checklist li{padding-left:28px; position:relative; margin-bottom:8px}
+.checklist li::before{
+  content:"✓"; position:absolute; left:0; color:var(--primary-strong); font-weight:700
+}
+.dash{padding-left:0; list-style:none}
+.dash li{margin:6px 0; padding-left:14px; position:relative}
+.dash li::before{content:"–"; position:absolute; left:0; color:var(--primary-strong)}
+
+/* Now */
+.now{margin-top:24px; background:linear-gradient(180deg,#ffffff, #f3fafc); border:1px solid #e1eef2; border-radius:14px; padding:14px 16px}
+.now ul{margin:8px 0 0 0; padding-left:18px}
+
+/* Stats */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:22px 0}
+@media (max-width:900px){ .stats{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:480px){ .stats{grid-template-columns:1fr} }
+.stat{
+  background:var(--card); border-radius:14px; box-shadow:var(--shadow);
+  padding:18px; text-align:center
+}
+.stat-number{font-size:1.8rem; font-weight:800; color:var(--primary-strong)}
+.stat-label{color:var(--muted)}
+
+/* Impact box */
+.impact-text .undertone{
+  padding:12px 14px; border-left:4px solid var(--primary); background:#eaf6f8; border-radius:4px
+}
+
+/* Kalender */
+.calendar-wrap{margin:14px 0 8px; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+.calendar-embed{width:100%; height:620px; border:0; display:block}
+.booking-cta{display:flex; gap:10px; flex-wrap:wrap; margin:8px 0 0}
+
+/* Støttespillere logo-grid */
+.logo-grid{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:18px; align-items:center
+}
+.logo-grid img{width:100%; height:64px; object-fit:contain; filter:none; opacity:.8}
+.logo-grid img:hover{filter:none; opacity:1}
+@media (max-width:900px){ .logo-grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:520px){ .logo-grid{grid-template-columns:1fr} }
+
+/* Kontaktboks */
+.contact-box{
+  background:linear-gradient(180deg,#ffffff,#eef9fb);
+  border:1px solid #d7ecf1; border-radius:14px; padding:18px; box-shadow:var(--shadow)
+}
+
+/* Footer */
+.site-footer{padding:28px 0; background:#0e3d45; color:#eaf6f8; margin-top:24px}
+.site-footer a{color:#c9f0f7}
+.site-footer .muted{color:#c2e6ec}
+
+/* Seksjon: Arrangementer + Dette skjer nå (med slideshow) */
+#arrangementer .grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Venstre kolonne */
+.local-news {
+  background: linear-gradient(180deg, #fff, #f6fafc);
+  border: 1px solid #d7ecf1;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.local-news h3 {
+  color: var(--primary-strong);
+  margin-top: 0;
+}
+
+.local-news ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.local-news li {
+  padding: 6px 0;
+  border-bottom: 1px solid #e5f0f3;
+}
+
+.local-news li strong {
+  color: var(--primary);
+}
+
+/* Facebook-lenke nederst */
+.fb-link {
+  text-align: center;
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5f0f3;
+}
+
+.fb-link .btn.primary {
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fb-link .btn.primary:hover {
+  background: var(--primary-strong);
+  transform: translateY(-2px);
+}
+
+/* Høyre kolonne: slideshow */
+.arrangement-bilde {
+  position: relative;
+  width: 100%;
+  height: 320px;           /* fast høyde hindrer kollaps */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.slideshow {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slideshow img {
+  position: absolute;
+  inset: 0;                /* kort for top/left/right/bottom: 0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slideshow img.active {
+  opacity: 1;
+}
+
+/* Mobil */
+@media (max-width: 900px) {
+  #arrangementer .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .arrangement-bilde {
+    height: 300px;
+  }
+}
+
+#facebook {
+  text-align: center;
+}
+
+.fb-link-box {
+  border: 1px solid #d7ecf1;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 32px 24px;
+}
+
+.fb-link-box .btn.primary {
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fb-link-box .btn.primary:hover {
+  background: var(--primary-strong);
+  transform: translateY(-2px);
+}
+.fb-link-box {
+  border: 1px solid #d7ecf1;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 32px 24px;
+  text-align: center;
+
+  /* 👇 dempet bakgrunnsbilde */
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.9)),
+    url("assets/facebook-bg.jpg") center/cover no-repeat;
+}
+
+
