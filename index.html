@@ -333,20 +333,36 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.querySelector(".menu-toggle");
+  const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".nav");
 
-  if (menuToggle && nav) {
-    menuToggle.addEventListener("click", () => {
-      nav.classList.toggle("show");
-    });
-  }
+  if (!toggle || !nav) return;
+
+  // Åpne/lukke meny
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation(); // hindrer at klikket registreres som "utenfor"
+    nav.classList.toggle("show");
+  });
+
+  // Lukk meny når man klikker på en lenke
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => nav.classList.remove("show"));
+  });
+
+  // Lukk meny hvis man klikker utenfor
+  document.addEventListener("click", (e) => {
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      nav.classList.remove("show");
+    }
+  });
 });
 </script>
 
 
+
 </body>
 </html>
+
 
 
 
