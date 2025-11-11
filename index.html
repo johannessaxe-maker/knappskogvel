@@ -509,9 +509,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+  openBtn.addEventListener("click", () => {
+  currentIndex = 0;
+  document.querySelector(".gallery").classList.add("hidden"); // hold skjult
+  showImage(currentIndex);
+});
+
 
 </body>
 </html>
+
 
 
 
