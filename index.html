@@ -235,21 +235,49 @@
     </div>
   </section>
 
-  <section id="fasiliteter" class="section">
-  <div class="container">
-    <h2>Fasiliteter i Grendahuset</h2>
-    <p class="muted">Se bilder av lokalet og uteområdet som kan leies:</p>
+<section id="fasiliteter" class="section">
+  <div class="container grid-2">
+    <!-- Venstre: tekst -->
+    <div class="facilities-text">
+      <h2>Fasiliteter</h2>
+      <p>
+        Grendahuset på Knappskog har alt som trengs for små og store arrangementer.
+        Lokalet passer godt til bursdager, møter, konfirmasjon og samlinger for opptil ca. 80 personer.
+      </p>
+      <ul class="checklist">
+        <li>🛁 To toaletter (HC-vennlige)</li>
+        <li>🍽️ Kjøkken med komfyr, kjøleskap, oppvaskmaskin og dekketøy</li>
+        <li>🪑 Samlingsrom / selskapsrom med bord, stoler og prosjektor</li>
+        <li>🚪 Romslig gang og garderobe</li>
+        <li>🌤️ Terrasse med sitteplasser og sol på ettermiddagen</li>
+        <li>🚗 Stort uteområde med parkering</li>
+        <li>🌊 Park- og grøntområde som strekker seg ned mot stranden</li>
+      </ul>
 
-    <div class="gallery">
+      <button id="openGallery" class="btn primary">📸 Se bilder</button>
+    </div>
+
+    <!-- Høyre: skjult galleri (åpnes via knapp) -->
+    <div class="gallery hidden">
       <img src="assets/fasilitet1.jpg" alt="Kjøkken og serveringsområde"
            data-caption="Fullt utstyrt kjøkken med oppvaskmaskin og dekketøy.">
-      <img src="assets/fasilitet2.jpg" alt="Storsal med scene"
-           data-caption="Stor sal med scene og plass til ca. 80 personer.">
-      <img src="assets/fasilitet3.jpg" alt="Uteområde"
-           data-caption="Uteområde med benker og kort vei til sjøen.">
+      <img src="assets/fasilitet2.jpg" alt="Storsal / selskapsrom"
+           data-caption="Selskapsrom med bord, stoler og plass til ca. 80 personer.">
+      <img src="assets/fasilitet3.jpg" alt="Uteområde og terrasse"
+           data-caption="Terrasse og stort uteområde med parkering og kort vei til sjøen.">
     </div>
   </div>
 </section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-image" src="" alt="">
+  <div class="caption"></div>
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</div>
+
 
 <!-- Lightbox (popup for bilder) -->
 <div id="lightbox" class="lightbox">
@@ -419,9 +447,50 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const gallery = document.querySelector(".gallery");
+  const galleryImages = document.querySelectorAll(".gallery img");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.querySelector(".lightbox-image");
+  const caption = document.querySelector(".caption");
+  const closeBtn = document.querySelector(".close");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+  const openBtn = document.getElementById("openGallery");
+
+  let currentIndex = 0;
+
+  // Åpne galleri når man klikker på knappen
+  openBtn.addEventListener("click", () => {
+    gallery.classList.remove("hidden");
+    gallery.scrollIntoView({ behavior: "smooth" });
+  });
+
+  function showImage(i) {
+    const img = galleryImages[i];
+    lightboxImg.src = img.src;
+    caption.textContent = img.dataset.caption || img.alt;
+  }
+
+  galleryImages.forEach((img, i) => {
+    img.addEventListener("click", () => {
+      currentIndex = i;
+      showImage(currentIndex);
+      lightbox.style.display = "block";
+    });
+  });
+
+  closeBtn.onclick = () => lightbox.style.display = "none";
+  prevBtn.onclick = () => { currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length; showImage(currentIndex); };
+  nextBtn.onclick = () => { currentIndex = (currentIndex + 1) % galleryImages.length; showImage(currentIndex); };
+  lightbox.addEventListener("click", e => { if (e.target === lightbox) lightbox.style.display = "none"; });
+});
+</script>
 
 </body>
 </html>
+
 
 
 
