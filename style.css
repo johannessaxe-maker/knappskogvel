@@ -384,7 +384,10 @@ body{
   margin: 0.4rem 0;
 }
 
-.hidden { display: none; }
+.hidden {
+  display: none !important;
+}
+
 
 .gallery {
   display: grid;
@@ -433,6 +436,7 @@ body{
 .lightbox button.prev { left: 30px; }
 .lightbox button.next { right: 30px; }
 .lightbox button:hover { background: rgba(255,255,255,0.4); }
+
 
 
 
